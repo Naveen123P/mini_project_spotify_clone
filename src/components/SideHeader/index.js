@@ -1,4 +1,4 @@
-import {withRouter} from 'react-router-dom'
+import {Link, withRouter} from 'react-router-dom'
 import Cookies from 'js-cookie'
 import './index.css'
 
@@ -10,11 +10,13 @@ const SideHeader = props => {
   }
   return (
     <div className="header-bg">
-      <img
-        src="https://res.cloudinary.com/dywnwbcln/image/upload/v1727765132/spotify_clone_images/mpneo2cl8efax4s6cwtm.png"
-        alt="website logo"
-        className="website-logo"
-      />
+      <Link to="/">
+        <img
+          src="https://res.cloudinary.com/dywnwbcln/image/upload/v1727765132/spotify_clone_images/mpneo2cl8efax4s6cwtm.png"
+          alt="website logo"
+          className="website-logo"
+        />
+      </Link>
       <button type="button" onClick={onClickLogout} className="logout-button">
         <img
           src="https://res.cloudinary.com/dywnwbcln/image/upload/v1727765132/spotify_clone_images/rfofgvx8wvlrlqw7ctxc.png"
