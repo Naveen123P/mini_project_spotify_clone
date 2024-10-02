@@ -1,0 +1,35 @@
+/* .not-found-bg {
+  height: ;
+} */
+.not-found-container {
+  height: 100vh;
+}
+.not-found-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+.not-found-img {
+  width: 80%;
+}
+.mobile-view {
+  background-color: #181818;
+}
+.not-found-heading {
+  color: #ffffff;
+}
+.desktop-view {
+  display: none;
+}
+
+@media screen and (min-width: 768px) {
+  .mobile-view {
+    display: none;
+  }
+  .desktop-view {
+    display: flex;
+    background-color: #181818;
+  }
+}

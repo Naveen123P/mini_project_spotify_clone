@@ -1,0 +1,14 @@
+.back-button-bg {
+  height: 2rem;
+  width: 100%;
+  position: fixed;
+}
+.back-button {
+  background-color: transparent;
+  border: 0ch;
+  display: flex;
+  align-items: center;
+}
+.back-text {
+  color: #ffffff;
+}

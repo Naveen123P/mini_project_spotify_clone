@@ -1,0 +1,19 @@
+.header-bg {
+  height: 100vh;
+  /* position: fixed; */
+  width: 3.5rem;
+  background-color: #040306;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  align-items: center;
+}
+.website-logo {
+  width: 100%;
+}
+.logout-button {
+  background-color: transparent;
+  border: none;
+}
