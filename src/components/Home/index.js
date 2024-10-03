@@ -4,7 +4,7 @@ import Cookies from 'js-cookie'
 import Popup from 'reactjs-popup'
 import {IoReorderThree} from 'react-icons/io5'
 import {IoIosClose} from 'react-icons/io'
-import PlayListsDetails from '../PlayListsDetails'
+import PlayListsItems from '../PlayListsItems'
 import LoaderRoute from '../LoaderRoute'
 import FailureView from '../FailureView'
 import SideHeader from '../SideHeader'
@@ -30,7 +30,7 @@ class Home extends Component {
   componentDidMount() {
     this.getEditorsPicks()
     this.getGenresMoods()
-    // this.getNewReleases()
+    this.getNewReleases()
   }
 
   formattedData = data => ({
@@ -63,10 +63,8 @@ class Home extends Component {
       const updatedData = data.playlists.items.map(each =>
         this.formattedData(each),
       )
-
-      console.log(updatedData)
       this.setState({
-        editorsPicksApiStatus: apiStatusConstants.failure,
+        editorsPicksApiStatus: apiStatusConstants.success,
         editorsPicks: updatedData,
       })
     } else {
@@ -92,14 +90,39 @@ class Home extends Component {
       const updatedData = data.categories.items.map(each =>
         this.categoriesFormattedData(each),
       )
-
-      console.log(updatedData)
       this.setState({
-        genresMoodsApiStatus: apiStatusConstants.failure,
+        genresMoodsApiStatus: apiStatusConstants.success,
         genresMoods: updatedData,
       })
     } else {
       this.setState({genresMoodsApiStatus: apiStatusConstants.failure})
+    }
+  }
+
+  getNewReleases = async () => {
+    this.setState({
+      newReleasesApiStatus: apiStatusConstants.inProgress,
+    })
+    const token = Cookies.get('jwt_token')
+    const url = 'https://apis2.ccbp.in/spotify-clone/new-releases'
+    const options = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      method: 'GET',
+    }
+    const response = await fetch(url, options)
+    if (response.ok) {
+      const data = await response.json()
+      const updatedData = data.albums.items.map(each =>
+        this.formattedData(each),
+      )
+      this.setState({
+        newReleasesApiStatus: apiStatusConstants.success,
+        newReleases: updatedData,
+      })
+    } else {
+      this.setState({newReleasesApiStatus: apiStatusConstants.failure})
     }
   }
 
@@ -163,7 +186,7 @@ class Home extends Component {
       <>
         <ul className="playlist-ul">
           {editorsPicks.map(each => (
-            <PlayListsDetails key={each.id} details={each} />
+            <PlayListsItems key={each.id} details={each} />
           ))}
         </ul>
       </>
@@ -176,7 +199,20 @@ class Home extends Component {
       <>
         <ul className="playlist-ul">
           {genresMoods.map(each => (
-            <PlayListsDetails key={each.id} details={each} />
+            <PlayListsItems key={each.id} details={each} />
+          ))}
+        </ul>
+      </>
+    )
+  }
+
+  renderNewReleasesSuccessView = () => {
+    const {newReleases} = this.state
+    return (
+      <>
+        <ul className="playlist-ul">
+          {newReleases.map(each => (
+            <PlayListsItems key={each.id} details={each} />
           ))}
         </ul>
       </>
@@ -189,6 +225,10 @@ class Home extends Component {
 
   genresMoodsRetry = () => {
     this.getGenresMoods()
+  }
+
+  newReleasesRetry = () => {
+    this.getNewReleases()
   }
 
   getAllEditorsPicksApiStatus = () => {
@@ -219,24 +259,54 @@ class Home extends Component {
     }
   }
 
+  getAllNewReleasesApiStatus = () => {
+    const {newReleasesApiStatus} = this.state
+    switch (newReleasesApiStatus) {
+      case apiStatusConstants.inProgress:
+        return <LoaderRoute />
+      case apiStatusConstants.success:
+        return this.renderNewReleasesSuccessView()
+      case apiStatusConstants.failure:
+        return <FailureView retry={this.newReleasesRetry} />
+      default:
+        return null
+    }
+  }
+
   render() {
-    const {editorsPicks, genresMoods, newReleases} = this.state
     return (
       <>
         <div className="mobile-view">
           <>{this.renderHomeHeader()}</>
-          <div className="home-bg">{this.getAllEditorsPicksApiStatus()}</div>
-        </div>
-        <div className="desktop-view">
-          <SideHeader />
           <div className="home-bg">
             <div className="playlist-container">
-              <h1 className="playlist-title">Editor's Picks</h1>
+              <h1 className="playlist-title">Editor&apos;s Picks</h1>
               {this.getAllEditorsPicksApiStatus()}
             </div>
             <div className="playlist-container">
               <h1 className="playlist-title">Genres & Moods</h1>
               {this.getAllGenresMoodsApiStatus()}
+            </div>
+            <div className="playlist-container">
+              <h1 className="playlist-title">New releases</h1>
+              {this.getAllNewReleasesApiStatus()}
+            </div>
+          </div>
+        </div>
+        <div className="desktop-view">
+          <SideHeader />
+          <div className="home-bg">
+            <div className="playlist-container">
+              <h1 className="playlist-title">Editor&apos;s Picks</h1>
+              {this.getAllEditorsPicksApiStatus()}
+            </div>
+            <div className="playlist-container">
+              <h1 className="playlist-title">Genres & Moods</h1>
+              {this.getAllGenresMoodsApiStatus()}
+            </div>
+            <div className="playlist-container">
+              <h1 className="playlist-title">New releases</h1>
+              {this.getAllNewReleasesApiStatus()}
             </div>
           </div>
         </div>

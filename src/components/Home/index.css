@@ -43,6 +43,8 @@
   background-color: #181818;
   padding: 1rem;
   padding-top: 1.2rem;
+  padding-bottom: 2.2rem;
+
   /* height: 100vh; */
 }
 .playlist-title {
@@ -63,6 +65,10 @@
   padding: 0%;
   justify-content: center;
   align-items: center;
+}
+.playlist-container {
+  height: 550px;
+  padding-bottom: 2rem;
 }
 
 @media screen and (min-width: 768px) {

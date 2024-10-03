@@ -1,14 +1,23 @@
 .back-button-bg {
-  height: 2rem;
+  height: 2.5rem;
   width: 100%;
-  position: fixed;
+  /* position: fixed; */
+  margin-top: 0px;
+  padding-top: 0%;
+  background-color: #181818;
+  /* border: solid 1px wheat; */
 }
 .back-button {
   background-color: transparent;
   border: 0ch;
   display: flex;
+  height: 100%;
   align-items: center;
+  justify-content: left;
+  /* border: solid 1px wheat; */
+  padding-left: 0px;
 }
 .back-text {
   color: #ffffff;
+  font-size: large;
 }

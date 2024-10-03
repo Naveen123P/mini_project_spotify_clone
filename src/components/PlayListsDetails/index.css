@@ -1,28 +1,22 @@
-.playlist-item {
-  width: 33%;
-  height: 33.3%;
-  padding: 4px;
-  border-radius: 5px;
+.playlist-details-padding {
+  min-height: 100vh;
 }
-
-.link-item {
-  text-decoration: none;
-  color: #ffffff;
+.playlist-details-bg {
+  padding: 0.5rem;
+  padding-top: 0px;
+  /* background-color: black; */
+  height: calc(100vh - 2.5rem);
+  /* border: solid 1px wheat; */
 }
-.playlist-img {
-  width: 100%;
-  border-radius: 10px;
-}
-.playlist-text {
-  font-size: small;
-  line-height: 14px;
-  margin-top: 2px;
+.h1 {
+  margin: 0px;
+  padding: 0px;
+  color: wheat;
 }
 
 @media screen and (min-width: 768px) {
-  .playlist-item {
-    height: 50%;
-    width: 190px;
-    padding: 1rem;
+  .playlist-details-bg {
+    width: calc(100vw - 3rem);
+    overflow-y: scroll;
   }
 }
