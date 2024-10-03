@@ -1,0 +1,28 @@
+.playlist-item {
+  width: 33%;
+  height: 33.3%;
+  padding: 4px;
+  border-radius: 5px;
+}
+
+.link-item {
+  text-decoration: none;
+  color: #ffffff;
+}
+.playlist-img {
+  width: 100%;
+  border-radius: 10px;
+}
+.playlist-text {
+  font-size: small;
+  line-height: 14px;
+  margin-top: 2px;
+}
+
+@media screen and (min-width: 768px) {
+  .playlist-item {
+    height: 50%;
+    width: 190px;
+    padding: 1rem;
+  }
+}

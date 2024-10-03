@@ -1,0 +1,26 @@
+.failure-bg {
+  height: 500px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #040306;
+  padding: 2rem 1rem;
+}
+.failure-text {
+  color: #ffffff;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 15.64px;
+}
+.try-again-button {
+  width: 78px;
+  height: 28px;
+  border-radius: 3px;
+  background-color: #ffffff;
+  color: #171f46;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 24px;
+}
