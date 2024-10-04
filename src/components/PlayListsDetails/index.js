@@ -17,11 +17,39 @@ class PlayListsDetails extends Component {
   state = {
     apiStatus: apiStatusConstants.initial,
     playListsData: {},
+    activeSong: '',
   }
 
   componentDidMount() {
     this.getPlayListData()
   }
+
+  getFormattedData = data => ({
+    addedAt: data.added_at,
+    track: {
+      album: {
+        albumType: data.track.album.album_type,
+        artists: data.track.album.artists.map(each => ({
+          id: each.id,
+          name: each.name,
+        })),
+        name: data.track.album.name,
+        id: data.track.album.id,
+        releaseDate: data.track.album.release_date,
+        images: data.track.album.images[0].url,
+      },
+      artists: data.track.artists.map(each => ({
+        id: each.name,
+        name: each.name,
+      })),
+      durationMs: data.track.duration_ms,
+      id: data.track.id,
+      name: data.track.name,
+      popularity: data.track.popularity,
+      previewUrl: data.track.preview_url,
+      trackNumber: data.track.track_number,
+    },
+  })
 
   getPlayListData = async () => {
     const {match} = this.props
@@ -39,13 +67,17 @@ class PlayListsDetails extends Component {
       method: 'GET',
     }
     const response = await fetch(apiUrl, options)
+    console.log(response)
     if (response.ok) {
       const fetchedData = await response.json()
-      // const updatedData =
-      console.log(fetchedData)
+      const updatedData = fetchedData.tracks.items.map(each =>
+        this.getFormattedData(each),
+      )
+      console.log(updatedData)
       this.setState({
         apiStatus: apiStatusConstants.success,
-        // playListsData:
+        playListsData: updatedData,
+        activeSong: updatedData.track.id,
       })
     } else {
       console.log('fail')
@@ -55,10 +87,23 @@ class PlayListsDetails extends Component {
     }
   }
 
+  onChangeActiveSong = id => {
+    this.setState({activeSong: id})
+  }
+
   renderPlayListDetailsView = () => {
-    const {playListsData} = this.state
-    console.log(playListsData)
-    return <h1>Success</h1>
+    const {playListsData, activeSong} = this.state
+    const {addedAt, track} = playListsData
+
+    // const activeSongImage = () => {
+    //     const filteredSongImage = tra
+    // }
+
+    return (
+      <div className="playlist-success-view">
+        <h1 className="">Hello World</h1>
+      </div>
+    )
   }
 
   getPlayListDataRetry = () => {
@@ -86,14 +131,14 @@ class PlayListsDetails extends Component {
         <div className="mobile-view playlist-details-padding">
           <BackButton />
           <div className="playlist-details-bg">
-            <h1 className="h1">hello</h1>
+            {this.renderPlayListDetails()}
           </div>
         </div>
         <div className="desktop-view">
           <SideHeader />
           <div className="playlist-details-bg">
             <BackButton />
-            <h1 className="h1">Hai Naveen</h1>
+            {this.renderPlayListDetails()}
           </div>
         </div>
       </>
