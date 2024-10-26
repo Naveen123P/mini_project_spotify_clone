@@ -55,6 +55,7 @@ class PlayListsDetails extends Component {
     const {match} = this.props
     const {params} = match
     const {id} = params
+    console.log(id)
     this.setState({
       apiStatus: apiStatusConstants.inProgress,
     })
@@ -77,7 +78,7 @@ class PlayListsDetails extends Component {
       this.setState({
         apiStatus: apiStatusConstants.success,
         playListsData: updatedData,
-        activeSong: updatedData.track.id,
+        // activeSong: updatedData.track.id,
       })
     } else {
       console.log('fail')
@@ -94,7 +95,6 @@ class PlayListsDetails extends Component {
   renderPlayListDetailsView = () => {
     const {playListsData, activeSong} = this.state
     const {addedAt, track} = playListsData
-
     // const activeSongImage = () => {
     //     const filteredSongImage = tra
     // }
@@ -102,6 +102,7 @@ class PlayListsDetails extends Component {
     return (
       <div className="playlist-success-view">
         <h1 className="">Hello World</h1>
+        {/* <img src={previewUrl} alt="preview" /> */}
       </div>
     )
   }

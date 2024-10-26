@@ -9,6 +9,7 @@ import LoaderRoute from '../LoaderRoute'
 import FailureView from '../FailureView'
 import SideHeader from '../SideHeader'
 import './index.css'
+import FeaturedPlayLists from '../FeaturedPlaylists'
 
 const apiStatusConstants = {
   initial: 'INITIAL',
@@ -19,18 +20,16 @@ const apiStatusConstants = {
 
 class Home extends Component {
   state = {
-    editorsPicksApiStatus: apiStatusConstants.initial,
-    genresMoodsApiStatus: apiStatusConstants.initial,
-    newReleasesApiStatus: apiStatusConstants.initial,
-    editorsPicks: [],
-    genresMoods: [],
-    newReleases: [],
+    // genresMoodsApiStatus: apiStatusConstants.initial,
+    // newReleasesApiStatus: apiStatusConstants.initial,
+    // genresMoods: [],
+    // newReleases: [],
   }
 
   componentDidMount() {
-    this.getEditorsPicks()
-    this.getGenresMoods()
-    this.getNewReleases()
+    this.getFeaturedPlaylists()
+    // this.getGenresMoods()
+    // this.getNewReleases()
   }
 
   formattedData = data => ({
@@ -45,34 +44,7 @@ class Home extends Component {
     image: data.icons[0].url,
   })
 
-  getEditorsPicks = async () => {
-    this.setState({
-      editorsPicksApiStatus: apiStatusConstants.inProgress,
-    })
-    const token = Cookies.get('jwt_token')
-    const url = 'https://apis2.ccbp.in/spotify-clone/featured-playlists'
-    const options = {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-      method: 'GET',
-    }
-    const response = await fetch(url, options)
-    if (response.ok) {
-      const data = await response.json()
-      const updatedData = data.playlists.items.map(each =>
-        this.formattedData(each),
-      )
-      this.setState({
-        editorsPicksApiStatus: apiStatusConstants.success,
-        editorsPicks: updatedData,
-      })
-    } else {
-      this.setState({editorsPicksApiStatus: apiStatusConstants.failure})
-    }
-  }
-
-  getGenresMoods = async () => {
+  /*    getGenresMoods = async () => {
     this.setState({
       genresMoodsApiStatus: apiStatusConstants.inProgress,
     })
@@ -124,7 +96,7 @@ class Home extends Component {
     } else {
       this.setState({newReleasesApiStatus: apiStatusConstants.failure})
     }
-  }
+  } */
 
   onClickLogout = () => {
     const {history} = this.props
@@ -180,19 +152,7 @@ class Home extends Component {
     </div>
   )
 
-  renderEditorsPicksSuccessView = () => {
-    const {editorsPicks} = this.state
-    return (
-      <>
-        <ul className="playlist-ul">
-          {editorsPicks.map(each => (
-            <PlayListsItems key={each.id} details={each} />
-          ))}
-        </ul>
-      </>
-    )
-  }
-
+  /*
   renderGenresMoodsSuccessView = () => {
     const {genresMoods} = this.state
     return (
@@ -217,33 +177,18 @@ class Home extends Component {
         </ul>
       </>
     )
-  }
+  } */
 
-  editorsPicksRetry = () => {
-    this.getEditorsPicks()
-  }
-
+  /*
   genresMoodsRetry = () => {
     this.getGenresMoods()
   }
 
   newReleasesRetry = () => {
     this.getNewReleases()
-  }
+  } */
 
-  getAllEditorsPicksApiStatus = () => {
-    const {editorsPicksApiStatus} = this.state
-    switch (editorsPicksApiStatus) {
-      case apiStatusConstants.inProgress:
-        return <LoaderRoute />
-      case apiStatusConstants.success:
-        return this.renderEditorsPicksSuccessView()
-      case apiStatusConstants.failure:
-        return <FailureView retry={this.editorsPicksRetry} />
-      default:
-        return null
-    }
-  }
+  /*
 
   getAllGenresMoodsApiStatus = () => {
     const {genresMoodsApiStatus} = this.state
@@ -271,7 +216,7 @@ class Home extends Component {
       default:
         return null
     }
-  }
+  }  */
 
   render() {
     return (
@@ -279,35 +224,29 @@ class Home extends Component {
         <div className="mobile-view">
           <>{this.renderHomeHeader()}</>
           <div className="home-bg">
-            <div className="playlist-container">
-              <h1 className="playlist-title">Editor&apos;s Picks</h1>
-              {this.getAllEditorsPicksApiStatus()}
-            </div>
-            <div className="playlist-container">
-              <h1 className="playlist-title">Genres & Moods</h1>
+            <FeaturedPlayLists />
+            {/* <div className="playlist-container">
+              <h1 className="playlist-title">Categories</h1>
               {this.getAllGenresMoodsApiStatus()}
             </div>
             <div className="playlist-container">
               <h1 className="playlist-title">New releases</h1>
               {this.getAllNewReleasesApiStatus()}
-            </div>
+            </div> */}
           </div>
         </div>
         <div className="desktop-view">
           <SideHeader />
           <div className="home-bg">
-            <div className="playlist-container">
-              <h1 className="playlist-title">Editor&apos;s Picks</h1>
-              {this.getAllEditorsPicksApiStatus()}
-            </div>
-            <div className="playlist-container">
-              <h1 className="playlist-title">Genres & Moods</h1>
+            <FeaturedPlayLists />
+            {/* <div className="playlist-container">
+              <h1 className="playlist-title">Categories</h1>
               {this.getAllGenresMoodsApiStatus()}
             </div>
             <div className="playlist-container">
               <h1 className="playlist-title">New releases</h1>
               {this.getAllNewReleasesApiStatus()}
-            </div>
+            </div> */}
           </div>
         </div>
       </>
