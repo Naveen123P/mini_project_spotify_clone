@@ -1,3 +1,4 @@
+import {Link, withRouter} from 'react-router-dom'
 import SideHeader from '../SideHeader'
 import BackButton from '../BackButton'
 import './index.css'
@@ -12,16 +13,19 @@ const NotFound = () => {
           alt="page not found"
           className="not-found-img"
         />
-        <h1 className="not-found-heading">Page Not Found</h1>
+        <h1 className="not-found-heading">PAGE NOT FOUND</h1>
+        <Link to="/">
+          <button type="button">Home Page</button>
+        </Link>
       </div>
     </div>
   )
 
   return (
     <>
-      <div className="mobile-view">
+      {/* <div className="mobile-view">
         <div className="not-found-bg">{renderNotFound()}</div>
-      </div>
+      </div> */}
       <div className="desktop-view">
         <SideHeader />
         <div className="not-found-bg">{renderNotFound()}</div>
@@ -30,4 +34,4 @@ const NotFound = () => {
   )
 }
 
-export default NotFound
+export default withRouter(NotFound)

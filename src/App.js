@@ -5,6 +5,8 @@ import Home from './components/Home'
 import NotFound from './components/NotFound'
 import ProtectedRoute from './components/ProtectedRoute'
 import PlayListsDetails from './components/PlayListsDetails'
+import CategoryPlaylistsDetails from './components/CategoryPlaylistsDetails'
+import AlbumDetails from './components/AlbumDetails'
 import './App.css'
 
 // write your code here
@@ -19,8 +21,14 @@ class App extends Component {
           path="/playlist/:id"
           component={PlayListsDetails}
         />
-        <Route path="/not-found" component={NotFound} />
-        <Redirect to="not-found" />
+        <ProtectedRoute
+          exact
+          path="/category/:id/playlists"
+          component={CategoryPlaylistsDetails}
+        />
+        <ProtectedRoute exact path="/album/:id" component={AlbumDetails} />
+        <Route path="/bad-path" component={NotFound} />
+        <Redirect to="bad-path" />
       </Switch>
     )
   }

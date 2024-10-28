@@ -4,7 +4,7 @@ import LoaderRoute from '../LoaderRoute'
 import FailureView from '../FailureView'
 import BackButton from '../BackButton'
 import SideHeader from '../SideHeader'
-import Item from '../Item'
+// import Item from '../Item'
 import './index.css'
 
 const apiStatusConstants = {
@@ -14,14 +14,14 @@ const apiStatusConstants = {
   inProgress: 'IN_PROGRESS',
 }
 
-class PlayListsDetails extends Component {
+class AlbumDetails extends Component {
   state = {
     apiStatus: apiStatusConstants.initial,
-    playListsData: {},
+    albumData: {},
   }
 
   componentDidMount() {
-    this.getPlayListData()
+    this.getAlbumData()
   }
 
   getFormattedData = data => ({
@@ -51,7 +51,7 @@ class PlayListsDetails extends Component {
     },
   })
 
-  getPlayListData = async () => {
+  getAlbumData = async () => {
     const {match} = this.props
     const {params} = match
     const {id} = params
@@ -60,7 +60,7 @@ class PlayListsDetails extends Component {
       apiStatus: apiStatusConstants.inProgress,
     })
     const jwtToken = Cookies.get('jwt_token')
-    const apiUrl = `https://apis2.ccbp.in/spotify-clone/playlists-details/${id}`
+    const apiUrl = `https://apis2.ccbp.in/spotify-clone/album-details/${id}`
     const options = {
       headers: {
         Authorization: `Bearer ${jwtToken}`,
@@ -76,7 +76,7 @@ class PlayListsDetails extends Component {
       console.log(fetchedData)
       this.setState({
         apiStatus: apiStatusConstants.success,
-        playListsData: fetchedData,
+        albumData: fetchedData,
         // activeSong: updatedData.track.id,
       })
     } else {
@@ -91,38 +91,39 @@ class PlayListsDetails extends Component {
   //     this.setState({activeSong: id})
   //   }
 
-  renderPlayListDetailsView = () => {
-    const {playListsData} = this.state
-    const {name, images, tracks} = playListsData
-    const {items} = tracks
+  renderAlbumDetailsView = () => {
+    const {albumData} = this.state
+    // const {name, images, tracks} = playListsData
+    // const {items} = tracks
     // let count = 0
-    console.log(playListsData)
+    console.log(albumData)
 
     return (
       <div className="playlist-success-view white-color">
-        <img src={images[0].url} alt="preview" />
+        {/* <img src={images[0].url} alt="preview" />
         <h1>{name}</h1>
         <ul className="tracks-items-track">
           {items.map(each => (
             <Item details={each} />
           ))}
-        </ul>
+        </ul> */}
+        I am in Album Route
       </div>
     )
   }
 
-  getPlayListDataRetry = () => {
-    this.getPlayListData()
+  getAlbumDataRetry = () => {
+    this.getAlbumData()
   }
 
-  renderPlayListDetails = () => {
+  renderAlbumDetails = () => {
     const {apiStatus} = this.state
 
     switch (apiStatus) {
       case apiStatusConstants.success:
-        return this.renderPlayListDetailsView()
+        return this.renderAlbumDetailsView()
       case apiStatusConstants.failure:
-        return <FailureView retry={this.getPlayListDataRetry} />
+        return <FailureView retry={this.getAlbumDataRetry} />
       case apiStatusConstants.inProgress:
         return <LoaderRoute />
       default:
@@ -135,15 +136,13 @@ class PlayListsDetails extends Component {
       <>
         <div className="mobile-view playlist-details-padding">
           <BackButton />
-          <div className="playlist-details-bg">
-            {this.renderPlayListDetails()}
-          </div>
+          <div className="playlist-details-bg">{this.renderAlbumDetails()}</div>
         </div>
         <div className="desktop-view">
           <SideHeader />
           <div className="playlist-details-bg">
             <BackButton />
-            {this.renderPlayListDetails()}
+            {this.renderAlbumDetails()}
           </div>
         </div>
       </>
@@ -151,4 +150,4 @@ class PlayListsDetails extends Component {
   }
 }
 
-export default PlayListsDetails
+export default AlbumDetails

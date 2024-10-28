@@ -23,6 +23,7 @@ const SideHeader = props => {
           alt="logout"
           className="logout-img"
         />
+        Logout
       </button>
     </div>
   )
