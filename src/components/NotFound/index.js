@@ -23,9 +23,9 @@ const NotFound = () => {
 
   return (
     <>
-      {/* <div className="mobile-view">
+      <div className="mobile-view">
         <div className="not-found-bg">{renderNotFound()}</div>
-      </div> */}
+      </div>
       <div className="desktop-view">
         <SideHeader />
         <div className="not-found-bg">{renderNotFound()}</div>

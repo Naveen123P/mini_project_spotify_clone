@@ -1,0 +1,23 @@
+.song-playing-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  border-top: 1px solid white;
+  background-color: #181818;
+  height: 100px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 20px;
+  margin: 0px;
+  margin-bottom: 55px;
+}
+.row-flex {
+  display: flex;
+  align-items: center;
+}
+.song-playing-img {
+  height: 75px;
+  margin-right: 5px;
+}

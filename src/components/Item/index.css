@@ -1,0 +1,16 @@
+.song-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.song-item-name {
+  padding: 0px;
+  margin: 0px;
+  margin-top: 10px;
+  margin-bottom: 8px;
+}
+.song-item-artist {
+  padding: 0px;
+  margin: 0px;
+  margin-bottom: 10px;
+}

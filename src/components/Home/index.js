@@ -68,14 +68,14 @@ class Home extends Component {
   render() {
     return (
       <>
-        {/* <div className="mobile-view">
+        <div className="mobile-view">
           <>{this.renderHomeHeader()}</>
           <div className="home-bg">
             <FeaturedPlayLists />
             <Categories />
             <NewReleases />
           </div>
-        </div> */}
+        </div>
         <div className="desktop-view">
           <SideHeader />
           <div className="home-bg">

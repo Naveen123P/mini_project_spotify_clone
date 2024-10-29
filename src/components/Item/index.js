@@ -1,4 +1,5 @@
 import {Component} from 'react'
+import SongContext from '../../context/SongContext'
 import './index.css'
 
 class Item extends Component {
@@ -34,23 +35,32 @@ class Item extends Component {
   })
 
   render() {
-    const {details} = this.props
+    const {details, images} = this.props
     const newDetails = this.getFormattedData(details)
     const {track} = newDetails
     //   console.log(track)
     const {name, artists, previewUrl, durationMs} = track
     console.log(previewUrl)
     return (
-      <>
-        <h3>{name}</h3>
-        <p>{artists[0].name}</p>
-        <p>
-          {Math.floor(durationMs / (60 * 60 * 60 * 60))}:{durationMs % 60}
-        </p>
-        <audio controls src={previewUrl}>
-          <track kind="captions" srcLang="en" label="No captions available" />
-        </audio>
-      </>
+      <SongContext.Consumer>
+        {value => {
+          const {updatedSongDetails} = value
+          const onClickSongItem = () => {
+            updatedSongDetails({name, artists, previewUrl, durationMs, images})
+          }
+          return (
+            <li onClick={onClickSongItem} className="song-item">
+              <div className="song-artist">
+                <h3 className="song-item-name">{name}</h3>
+                <p className="song-item-artist">{artists[0].name}</p>
+              </div>
+              <p>
+                {Math.floor(durationMs / (60 * 60 * 60 * 60))}:{durationMs % 60}
+              </p>
+            </li>
+          )
+        }}
+      </SongContext.Consumer>
     )
   }
 }

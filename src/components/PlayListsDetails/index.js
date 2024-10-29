@@ -5,6 +5,7 @@ import FailureView from '../FailureView'
 import BackButton from '../BackButton'
 import SideHeader from '../SideHeader'
 import Item from '../Item'
+import SongPlayingTRoute from '../SongPlayingRoute'
 import './index.css'
 
 const apiStatusConstants = {
@@ -99,15 +100,20 @@ class PlayListsDetails extends Component {
     console.log(playListsData)
 
     return (
-      <div className="playlist-success-view white-color">
-        <img src={images[0].url} alt="preview" />
-        <h1>{name}</h1>
-        <ul className="tracks-items-track">
-          {items.map(each => (
-            <Item details={each} />
-          ))}
-        </ul>
-      </div>
+      <>
+        <div className="playlist-success-view white-color">
+          <div className="top-image-name">
+            <img src={images[0].url} alt="preview" className="top-img" />
+            <h1 className="top-name">{name}</h1>
+          </div>
+          <ul className="tracks-items-track">
+            {items.map(each => (
+              <Item details={each} images={images} />
+            ))}
+          </ul>
+        </div>
+        <SongPlayingTRoute />
+      </>
     )
   }
 
