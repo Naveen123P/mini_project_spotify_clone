@@ -73,7 +73,7 @@ class AlbumDetails extends Component {
       //   const updatedData = fetchedData.tracks.items.map(each =>
       //     this.getFormattedData(each),
       //   )
-      console.log(fetchedData)
+      //   console.log(fetchedData)
       this.setState({
         apiStatus: apiStatusConstants.success,
         albumData: fetchedData,

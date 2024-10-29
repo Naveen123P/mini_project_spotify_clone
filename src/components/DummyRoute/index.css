@@ -1,0 +1,47 @@
+.spotify-player {
+  background-color: #181818;
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+  width: 300px;
+  font-family: Arial, sans-serif;
+}
+
+.track-info h3 {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.track-info p {
+  color: #b3b3b3;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.controls button {
+  background-color: #1db954;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.controls input[type='range'] {
+  flex-grow: 1;
+  -webkit-appearance: none;
+  height: 4px;
+  background: #535353;
+  border-radius: 5px;
+  outline: none;
+  cursor: pointer;
+}
+
+.controls span {
+  font-size: 0.9rem;
+}

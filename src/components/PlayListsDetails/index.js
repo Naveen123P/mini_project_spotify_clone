@@ -6,6 +6,7 @@ import BackButton from '../BackButton'
 import SideHeader from '../SideHeader'
 import Item from '../Item'
 import SongPlayingTRoute from '../SongPlayingRoute'
+import SongContext from '../../context/SongContext'
 import './index.css'
 
 const apiStatusConstants = {
@@ -56,7 +57,7 @@ class PlayListsDetails extends Component {
     const {match} = this.props
     const {params} = match
     const {id} = params
-    console.log(id)
+    // console.log(id)
     this.setState({
       apiStatus: apiStatusConstants.inProgress,
     })
@@ -74,7 +75,7 @@ class PlayListsDetails extends Component {
       //   const updatedData = fetchedData.tracks.items.map(each =>
       //     this.getFormattedData(each),
       //   )
-      console.log(fetchedData)
+      //   console.log(fetchedData)
       this.setState({
         apiStatus: apiStatusConstants.success,
         playListsData: fetchedData,
@@ -96,24 +97,46 @@ class PlayListsDetails extends Component {
     const {playListsData} = this.state
     const {name, images, tracks} = playListsData
     const {items} = tracks
+    const songDetailsObj = items[0]
+    console.log(songDetailsObj)
+    const defaultSongDetails = {
+      id: songDetailsObj.track.id,
+      name: songDetailsObj.track.name,
+      durationMs: songDetailsObj.track.duration_ms,
+      images,
+      previewUrl: songDetailsObj.track.preview_url,
+      artists: songDetailsObj.track.artists, // songDetailsObj.artists[0].name,
+    }
     // let count = 0
-    console.log(playListsData)
+    console.log(defaultSongDetails)
 
     return (
-      <>
-        <div className="playlist-success-view white-color">
-          <div className="top-image-name">
-            <img src={images[0].url} alt="preview" className="top-img" />
-            <h1 className="top-name">{name}</h1>
-          </div>
-          <ul className="tracks-items-track">
-            {items.map(each => (
-              <Item details={each} images={images} />
-            ))}
-          </ul>
-        </div>
-        <SongPlayingTRoute />
-      </>
+      <SongContext.Consumer>
+        {value => {
+          const {songDetails, updatedSongDetails} = value
+
+          if (Object.keys(songDetails).length === 0) {
+            updatedSongDetails({...defaultSongDetails})
+          }
+
+          return (
+            <>
+              <div className="playlist-success-view white-color">
+                <div className="top-image-name">
+                  <img src={images[0].url} alt="preview" className="top-img" />
+                  <h1 className="top-name">{name}</h1>
+                </div>
+                <ul className="tracks-items-track">
+                  {items.map(each => (
+                    <Item details={each} images={images} />
+                  ))}
+                </ul>
+              </div>
+              <SongPlayingTRoute />
+            </>
+          )
+        }}
+      </SongContext.Consumer>
     )
   }
 

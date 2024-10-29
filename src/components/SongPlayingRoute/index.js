@@ -30,13 +30,13 @@ class SongPlayingRoute extends Component {
                     {Math.floor(durationMs / (60 * 60 * 60 * 60))}:
                     {durationMs % 60}
                   </p>
-                  {/* <audio controls src={previewUrl}>
+                  <audio controls src={previewUrl}>
                     <track
                       kind="captions"
                       srcLang="en"
                       label="No captions available"
                     />
-                  </audio> */}
+                  </audio>
                 </div>
               )}
             </>

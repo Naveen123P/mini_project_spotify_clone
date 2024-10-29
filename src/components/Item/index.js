@@ -39,14 +39,21 @@ class Item extends Component {
     const newDetails = this.getFormattedData(details)
     const {track} = newDetails
     //   console.log(track)
-    const {name, artists, previewUrl, durationMs} = track
+    const {name, artists, previewUrl, durationMs, id} = track
     console.log(previewUrl)
     return (
       <SongContext.Consumer>
         {value => {
           const {updatedSongDetails} = value
           const onClickSongItem = () => {
-            updatedSongDetails({name, artists, previewUrl, durationMs, images})
+            updatedSongDetails({
+              id,
+              name,
+              artists,
+              previewUrl,
+              durationMs,
+              images,
+            })
           }
           return (
             <li onClick={onClickSongItem} className="song-item">
