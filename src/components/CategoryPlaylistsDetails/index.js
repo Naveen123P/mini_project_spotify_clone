@@ -4,7 +4,7 @@ import LoaderRoute from '../LoaderRoute'
 import FailureView from '../FailureView'
 import BackButton from '../BackButton'
 import SideHeader from '../SideHeader'
-// import Item from '../Item'
+import CategoryItems from '../CategoryItems'
 import './index.css'
 
 const apiStatusConstants = {
@@ -24,38 +24,10 @@ class CategoryPlayListsDetails extends Component {
     this.getCategoryData()
   }
 
-  getFormattedData = data => ({
-    addedAt: data.added_at,
-    track: {
-      album: {
-        albumType: data.track.album.album_type,
-        artists: data.track.album.artists.map(each => ({
-          id: each.id,
-          name: each.name,
-        })),
-        name: data.track.album.name,
-        id: data.track.album.id,
-        releaseDate: data.track.album.release_date,
-        images: data.track.album.images[0].url,
-      },
-      artists: data.track.artists.map(each => ({
-        id: each.name,
-        name: each.name,
-      })),
-      durationMs: data.track.duration_ms,
-      id: data.track.id,
-      name: data.track.name,
-      popularity: data.track.popularity,
-      previewUrl: data.track.preview_url,
-      trackNumber: data.track.track_number,
-    },
-  })
-
   getCategoryData = async () => {
     const {match} = this.props
     const {params} = match
     const {id} = params
-    console.log(id)
     this.setState({
       apiStatus: apiStatusConstants.inProgress,
     })
@@ -70,14 +42,10 @@ class CategoryPlayListsDetails extends Component {
     const response = await fetch(apiUrl, options)
     if (response.ok) {
       const fetchedData = await response.json()
-      //   const updatedData = fetchedData.tracks.items.map(each =>
-      //     this.getFormattedData(each),
-      //   )
       console.log(fetchedData)
       this.setState({
         apiStatus: apiStatusConstants.success,
         CategoryData: fetchedData,
-        // activeSong: updatedData.track.id,
       })
     } else {
       console.log('fail')
@@ -87,27 +55,20 @@ class CategoryPlayListsDetails extends Component {
     }
   }
 
-  //   onChangeActiveSong = id => {
-  //     this.setState({activeSong: id})
-  //   }
-
   renderCategoryDetailsView = () => {
     const {CategoryData} = this.state
-    // const {name, images, tracks} = playListsData
-    // const {items} = tracks
-    // let count = 0
-    console.log(CategoryData)
-
+    const {playlists} = CategoryData
+    console.log(playlists)
+    const {items} = playlists
+    console.log(1000000000000000)
     return (
       <div className="playlist-success-view white-color">
-        {/* <img src={images[0].url} alt="preview" />
-        <h1>{name}</h1>
-        <ul className="tracks-items-track">
+        <h1 className="playlist-title">PlayList</h1>
+        <ul>
           {items.map(each => (
-            <Item details={each} />
+            <CategoryItems details={each} />
           ))}
-        </ul> */}
-        I am in Category Route
+        </ul>
       </div>
     )
   }
@@ -118,7 +79,6 @@ class CategoryPlayListsDetails extends Component {
 
   renderCategoryDetails = () => {
     const {apiStatus} = this.state
-
     switch (apiStatus) {
       case apiStatusConstants.success:
         return this.renderCategoryDetailsView()
@@ -135,7 +95,9 @@ class CategoryPlayListsDetails extends Component {
     return (
       <>
         <div className="mobile-view playlist-details-padding">
-          <BackButton />
+          <div className="top-fixed-bar">
+            <BackButton />
+          </div>
           <div className="playlist-details-bg">
             {this.renderCategoryDetails()}
           </div>
