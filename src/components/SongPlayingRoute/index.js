@@ -9,7 +9,7 @@ class SongPlayingRoute extends Component {
       <SongContext.Consumer>
         {value => {
           const {songDetails} = value
-          const {name, artists, previewUrl, durationMs, images} = songDetails
+          const {name, artists, previewUrl, images} = songDetails
 
           return (
             <>
@@ -26,10 +26,6 @@ class SongPlayingRoute extends Component {
                       <p className="song-item-artist">{artists[0].name}</p>
                     </div>
                   </div>
-                  <p>
-                    {Math.floor(durationMs / (60 * 60 * 60 * 60))}:
-                    {durationMs % 60}
-                  </p>
                   <audio controls src={previewUrl}>
                     <track
                       kind="captions"

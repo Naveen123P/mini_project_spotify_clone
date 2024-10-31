@@ -5,7 +5,7 @@ import FailureView from '../FailureView'
 import BackButton from '../BackButton'
 import SideHeader from '../SideHeader'
 import Item from '../Item'
-import SongPlayingTRoute from '../SongPlayingRoute'
+import SongPlayingRoute from '../SongPlayingRoute'
 import SongContext from '../../context/SongContext'
 import './index.css'
 
@@ -132,7 +132,7 @@ class PlayListsDetails extends Component {
                   ))}
                 </ul>
               </div>
-              <SongPlayingTRoute />
+              <SongPlayingRoute />
             </>
           )
         }}
@@ -163,7 +163,9 @@ class PlayListsDetails extends Component {
     return (
       <>
         <div className="mobile-view playlist-details-padding">
-          <BackButton />
+          <div className="top-fixed-bar">
+            <BackButton />
+          </div>
           <div className="playlist-details-bg">
             {this.renderPlayListDetails()}
           </div>
