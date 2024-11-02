@@ -58,7 +58,9 @@ class AlbumDetails extends Component {
 
   renderAlbumDetailsView = () => {
     const {albumData} = this.state
-    const {name, images, tracks} = albumData
+    console.log(111111111111111111111)
+    console.log(albumData)
+    const {name, images, tracks, popularity} = albumData
     const {items} = tracks
     const songDetailsObj = items[0]
     const defaultSongDetails = {
@@ -73,6 +75,8 @@ class AlbumDetails extends Component {
       <SongContext.Consumer>
         {value => {
           const {songDetails, updatedSongDetails} = value
+          const {artists} = songDetails
+          console.log(artists)
           if (Object.keys(songDetails).length === 0) {
             updatedSongDetails({...defaultSongDetails})
           }
@@ -81,11 +85,29 @@ class AlbumDetails extends Component {
               <div className="playlist-success-view white-color">
                 <div className="top-image-name">
                   <img src={images[0].url} alt="preview" className="top-img" />
-                  <h1 className="top-name">{name}</h1>
+                  <div className="details-text-container">
+                    <h1 className="desktop-playlist-title">
+                      Featured Playlist
+                    </h1>
+                    <h1 className="top-name">{name}</h1>
+                    {artists ? (
+                      <p className="artist-name">{artists[0].name}</p>
+                    ) : null}
+                  </div>
+                </div>
+                <div className="desktop-track-table border-bottom">
+                  <p className="track-no">#</p>
+                  <p className="album-track-name">Track</p>
+                  <p className="album-time">Time</p>
+                  <p className="album-popularity">Popularity</p>
                 </div>
                 <ul className="tracks-items-track">
                   {items.map(each => (
-                    <AlbumItem details={each} images={images} />
+                    <AlbumItem
+                      details={each}
+                      images={images}
+                      popularity={popularity}
+                    />
                   ))}
                 </ul>
               </div>
@@ -119,19 +141,26 @@ class AlbumDetails extends Component {
   render() {
     return (
       <>
-        <div className="mobile-view playlist-details-padding">
-          <div className="top-fixed-bar">
-            <BackButton />
+        <div className="playlist-details-padding">
+          <div className="desktop-side-header">
+            <SideHeader />
           </div>
-          <div className="playlist-details-bg">{this.renderAlbumDetails()}</div>
+          <div className="desktop-details-page">
+            <div className="top-fixed-bar">
+              <BackButton />
+            </div>
+            <div className="playlist-details-bg">
+              {this.renderAlbumDetails()}
+            </div>
+          </div>
         </div>
-        <div className="desktop-view">
+        {/* <div className="desktop-view">
           <SideHeader />
           <div className="playlist-details-bg">
             <BackButton />
             {this.renderAlbumDetails()}
           </div>
-        </div>
+        </div> */}
       </>
     )
   }

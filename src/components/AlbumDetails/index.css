@@ -1,0 +1,9 @@
+@media screen and (min-width: 768px) {
+  .album-track-name,
+  .album-time {
+    width: 40%;
+  }
+  .album-popularity {
+    width: 15%;
+  }
+}

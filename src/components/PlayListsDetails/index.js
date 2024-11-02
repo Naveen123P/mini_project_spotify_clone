@@ -57,7 +57,6 @@ class PlayListsDetails extends Component {
     const {match} = this.props
     const {params} = match
     const {id} = params
-    // console.log(id)
     this.setState({
       apiStatus: apiStatusConstants.inProgress,
     })
@@ -72,33 +71,24 @@ class PlayListsDetails extends Component {
     const response = await fetch(apiUrl, options)
     if (response.ok) {
       const fetchedData = await response.json()
-      //   const updatedData = fetchedData.tracks.items.map(each =>
-      //     this.getFormattedData(each),
-      //   )
-      //   console.log(fetchedData)
       this.setState({
         apiStatus: apiStatusConstants.success,
         playListsData: fetchedData,
-        // activeSong: updatedData.track.id,
       })
     } else {
-      console.log('fail')
       this.setState({
         apiStatus: apiStatusConstants.failure,
       })
     }
   }
 
-  //   onChangeActiveSong = id => {
-  //     this.setState({activeSong: id})
-  //   }
-
   renderPlayListDetailsView = () => {
     const {playListsData} = this.state
+    console.log(1000000000000000000)
+    console.log(playListsData)
     const {name, images, tracks} = playListsData
     const {items} = tracks
     const songDetailsObj = items[0]
-    console.log(songDetailsObj)
     const defaultSongDetails = {
       id: songDetailsObj.track.id,
       name: songDetailsObj.track.name,
@@ -107,14 +97,13 @@ class PlayListsDetails extends Component {
       previewUrl: songDetailsObj.track.preview_url,
       artists: songDetailsObj.track.artists, // songDetailsObj.artists[0].name,
     }
-    // let count = 0
-    console.log(defaultSongDetails)
 
     return (
       <SongContext.Consumer>
         {value => {
           const {songDetails, updatedSongDetails} = value
-
+          const {artists} = songDetails
+          console.log(artists)
           if (Object.keys(songDetails).length === 0) {
             updatedSongDetails({...defaultSongDetails})
           }
@@ -124,15 +113,37 @@ class PlayListsDetails extends Component {
               <div className="playlist-success-view white-color">
                 <div className="top-image-name">
                   <img src={images[0].url} alt="preview" className="top-img" />
-                  <h1 className="top-name">{name}</h1>
+                  <div className="details-text-container">
+                    <h1 className="desktop-playlist-title">
+                      New Release Albums
+                    </h1>
+                    <h1 className="top-name">{name}</h1>
+                    {artists ? (
+                      <p className="artist-name">{artists[0].name}</p>
+                    ) : null}
+                  </div>
                 </div>
+                <div className="desktop-track-table border-bottom">
+                  <p className="track-no"> </p>
+                  <p className="equal-width track-name">Track</p>
+                  <p className="equal-width album">Album</p>
+                  <p className="time">Time</p>
+                  <p className="equal-width artist">Artist</p>
+                  <p className="equal-width added">Added</p>
+                </div>
+
                 <ul className="tracks-items-track">
                   {items.map(each => (
                     <Item details={each} images={images} />
                   ))}
                 </ul>
+                <div className="desktop-playing-song">
+                  <SongPlayingRoute />
+                </div>
               </div>
-              <SongPlayingRoute />
+              <div className="mobile-playing-song">
+                <SongPlayingRoute />
+              </div>
             </>
           )
         }}
@@ -162,21 +173,26 @@ class PlayListsDetails extends Component {
   render() {
     return (
       <>
-        <div className="mobile-view playlist-details-padding">
-          <div className="top-fixed-bar">
-            <BackButton />
+        <div className="playlist-details-padding">
+          <div className="desktop-side-header">
+            <SideHeader />
           </div>
-          <div className="playlist-details-bg">
-            {this.renderPlayListDetails()}
+          <div className="desktop-details-page">
+            <div className="top-fixed-bar">
+              <BackButton />
+            </div>
+            <div className="playlist-details-bg">
+              {this.renderPlayListDetails()}
+            </div>
           </div>
         </div>
-        <div className="desktop-view">
+        {/* <div className="desktop-view">
           <SideHeader />
           <div className="playlist-details-bg">
             <BackButton />
             {this.renderPlayListDetails()}
           </div>
-        </div>
+        </div> */}
       </>
     )
   }

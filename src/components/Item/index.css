@@ -14,3 +14,13 @@
   margin: 0px;
   margin-bottom: 10px;
 }
+
+@media screen and (min-width: 768px) {
+  .song-item {
+    display: none;
+  }
+  .desktop-song-item:hover {
+    cursor: pointer;
+    background-color: aqua;
+  }
+}

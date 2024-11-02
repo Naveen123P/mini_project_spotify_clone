@@ -5,6 +5,8 @@ import './index.css'
 
 class SongPlayingRoute extends Component {
   render() {
+    const extractTitle = input => input.split(/[([\]]/)[0].trim()
+
     return (
       <SongContext.Consumer>
         {value => {
@@ -22,8 +24,10 @@ class SongPlayingRoute extends Component {
                       className="song-playing-img"
                     />
                     <div>
-                      <h3 className="song-item-name">{name}</h3>
-                      <p className="song-item-artist">{artists[0].name}</p>
+                      <h3 className="song-item-name">{extractTitle(name)}</h3>
+                      <p className="song-item-artist">
+                        {extractTitle(artists[0].name)}
+                      </p>
                     </div>
                   </div>
                   <audio controls src={previewUrl}>

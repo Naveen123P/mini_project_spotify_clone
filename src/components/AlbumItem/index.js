@@ -16,9 +16,12 @@ class AlbumItem extends Component {
   })
 
   render() {
-    const {details, images} = this.props
+    const {details, images, popularity} = this.props
+    console.log(9999999999999999999)
+    console.log(details)
     const newDetails = this.getFormattedData(details)
-    const {name, artists, previewUrl, durationMs, id} = newDetails
+    const {name, artists, previewUrl, durationMs, id, trackNumber} = newDetails
+    const extractTitle = input => input.split(/[([\]]/)[0].trim()
     return (
       <SongContext.Consumer>
         {value => {
@@ -34,15 +37,30 @@ class AlbumItem extends Component {
             })
           }
           return (
-            <li onClick={onClickSongItem} className="song-item">
-              <div className="song-artist">
-                <h3 className="song-item-name">{name}</h3>
-                <p className="song-item-artist">{artists[0].name}</p>
-              </div>
-              <p>
-                {Math.floor(durationMs / (60 * 60 * 60 * 60))}:{durationMs % 60}
-              </p>
-            </li>
+            <>
+              <li onClick={onClickSongItem} className="song-item">
+                <div className="song-artist">
+                  <h3 className="song-item-name">{name}</h3>
+                  <p className="song-item-artist">{artists[0].name}</p>
+                </div>
+                <p>
+                  {Math.floor(durationMs / (60 * 60 * 60 * 60))}:
+                  {durationMs % 60}
+                </p>
+              </li>
+              <li
+                onClick={onClickSongItem}
+                className="desktop-track-table desktop-song-item"
+              >
+                <p className="track-no">{trackNumber}</p>
+                <p className="album-track-name">{extractTitle(name)}</p>
+                <p className="album-time">
+                  {Math.floor(durationMs / (60 * 60 * 60 * 60))}:
+                  {durationMs % 60}
+                </p>
+                <p className="album-popularity">{popularity}</p>
+              </li>
+            </>
           )
         }}
       </SongContext.Consumer>

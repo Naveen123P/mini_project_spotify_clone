@@ -1,4 +1,5 @@
 import {Component} from 'react'
+import moment from 'moment'
 import SongContext from '../../context/SongContext'
 import './index.css'
 
@@ -37,9 +38,20 @@ class Item extends Component {
   render() {
     const {details, images} = this.props
     const newDetails = this.getFormattedData(details)
-    const {track} = newDetails
+    const {addedAt, track} = newDetails
     //   console.log(track)
-    const {name, artists, previewUrl, durationMs, id} = track
+    const {
+      trackNumber,
+      album,
+      name,
+      artists,
+      previewUrl,
+      durationMs,
+      id,
+    } = track
+
+    const extractTitle = input => input.split(/[([\]]/)[0].trim()
+
     console.log(previewUrl)
     return (
       <SongContext.Consumer>
@@ -56,15 +68,36 @@ class Item extends Component {
             })
           }
           return (
-            <li onClick={onClickSongItem} className="song-item">
-              <div className="song-artist">
-                <h3 className="song-item-name">{name}</h3>
-                <p className="song-item-artist">{artists[0].name}</p>
-              </div>
-              <p>
-                {Math.floor(durationMs / (60 * 60 * 60 * 60))}:{durationMs % 60}
-              </p>
-            </li>
+            <>
+              <li onClick={onClickSongItem} className="song-item">
+                <div className="song-artist">
+                  <h3 className="song-item-name">{extractTitle(name)}</h3>
+                  <p className="song-item-artist">
+                    {extractTitle(artists[0].name)}
+                  </p>
+                </div>
+                <p>
+                  {Math.floor(durationMs / (60 * 60 * 60 * 60))}:
+                  {durationMs % 60}
+                </p>
+              </li>
+              <li
+                onClick={onClickSongItem}
+                className="desktop-track-table desktop-song-item"
+              >
+                <p className="track-no">{trackNumber}</p>
+                <p className="equal-width track-name">{extractTitle(name)}</p>
+                <p className="equal-width album">{extractTitle(album.name)}</p>
+                <p className="time">
+                  {Math.floor(durationMs / (60 * 60 * 60 * 60))}:
+                  {durationMs % 60}
+                </p>
+                <p className="equal-width artist">
+                  {extractTitle(artists[0].name)}
+                </p>
+                <p className="equal-width added">{moment(addedAt).fromNow()}</p>
+              </li>
+            </>
           )
         }}
       </SongContext.Consumer>

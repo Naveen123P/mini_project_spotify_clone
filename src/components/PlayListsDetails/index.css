@@ -1,17 +1,20 @@
 .playlist-details-padding {
+  max-height: 100%;
   min-height: 100vh;
-  /* height: 100%; */
+}
+.desktop-side-header {
+  display: none;
 }
 .playlist-details-bg {
   padding: 0.5rem;
   padding-top: 0px;
-  /* background-color: black; */
-  /* height: calc(100% - 2.5rem); */
-  /* border: solid 1px wheat; */
+  height: 100%;
+  background-color: #181818;
 }
 .playlist-success-view {
   height: 100%;
   padding: 15px;
+  padding-right: 0px;
 }
 .top-fixed-bar {
   position: fixed;
@@ -44,10 +47,89 @@
   font-weight: 400;
   margin: 5px;
 }
+.artist-name {
+  text-align: center;
+}
+
+.desktop-playlist-title {
+  display: none;
+}
+.desktop-track-table {
+  display: none;
+}
+.desktop-playing-song {
+  display: none;
+}
 
 @media screen and (min-width: 768px) {
+  .playlist-details-padding {
+    display: flex;
+  }
+  .desktop-details-page {
+    width: calc(100vw - 3.5rem);
+    min-height: 100vh;
+    max-height: 100%;
+  }
   .playlist-details-bg {
-    width: calc(100vw - 3rem);
-    overflow-y: scroll;
+    width: calc(100vw - 3.5rem);
+    margin-left: 3.5rem;
+  }
+  *::-webkit-scrollbar {
+    display: none;
+  }
+  .desktop-side-header {
+    display: block;
+  }
+  .top-fixed-bar {
+    left: 3.5rem;
+    width: calc(100vw - 3.5rem);
+  }
+  .playlist-success-view {
+    width: calc(100% - 3rem);
+  }
+  .desktop-playlist-title {
+    display: block;
+    font-size: large;
+  }
+  .top-image-name {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: flex-start;
+    margin-bottom: 20px;
+  }
+  .top-img {
+    height: 200px;
+    width: 200px;
+    margin-right: 10px;
+  }
+  .top-name {
+    font-size: 3rem;
+  }
+  .artist-name {
+    text-align: left;
+  }
+
+  .desktop-track-table {
+    display: flex;
+    width: 100%;
+  }
+  .border-bottom {
+    border-bottom: 1px solid white;
+  }
+  .track-no {
+    width: 5%;
+  }
+  .equal-width {
+    width: 23%;
+  }
+  .time {
+    width: 7%;
+  }
+  .desktop-playing-song {
+    display: block;
+  }
+  .mobile-playing-song {
+    display: none;
   }
 }

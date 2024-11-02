@@ -1,6 +1,9 @@
 .header-bg {
   height: 100vh;
-  /* position: fixed; */
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
   width: 3.5rem;
   background-color: #040306;
   display: flex;

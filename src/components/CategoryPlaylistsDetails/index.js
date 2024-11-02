@@ -62,9 +62,9 @@ class CategoryPlayListsDetails extends Component {
     const {items} = playlists
     console.log(1000000000000000)
     return (
-      <div className="playlist-success-view white-color">
+      <div className="playlist-success-view white-color ">
         <h1 className="playlist-title">PlayList</h1>
-        <ul>
+        <ul className="category-desktop-style">
           {items.map(each => (
             <CategoryItems details={each} />
           ))}
@@ -94,7 +94,20 @@ class CategoryPlayListsDetails extends Component {
   render() {
     return (
       <>
-        <div className="mobile-view playlist-details-padding">
+        <div className="playlist-details-padding">
+          <div className="desktop-side-header">
+            <SideHeader />
+          </div>
+          <div className="desktop-details-page">
+            <div className="top-fixed-bar">
+              <BackButton />
+            </div>
+            <div className="playlist-details-bg">
+              {this.renderCategoryDetails()}
+            </div>
+          </div>
+        </div>
+        {/* <div className="mobile-view playlist-details-padding">
           <div className="top-fixed-bar">
             <BackButton />
           </div>
@@ -108,7 +121,7 @@ class CategoryPlayListsDetails extends Component {
             <BackButton />
             {this.renderCategoryDetails()}
           </div>
-        </div>
+        </div> */}
       </>
     )
   }
