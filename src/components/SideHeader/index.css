@@ -17,6 +17,26 @@
   width: 100%;
 }
 .logout-button {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.logout-button {
   background-color: transparent;
   border: none;
+  color: #9b9b9b;
+}
+.logout-icon {
+  font-size: x-large;
+  font-weight: 1000;
+  margin: 1px;
+  padding: 1px;
+}
+@media screen and (min-width: 768px) {
+  .logout-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
 }

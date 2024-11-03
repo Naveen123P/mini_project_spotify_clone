@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom'
 import Cookies from 'js-cookie'
 import Popup from 'reactjs-popup'
 import {IoReorderThree} from 'react-icons/io5'
-import {IoIosClose} from 'react-icons/io'
+import {IoIosClose, IoMdLogOut} from 'react-icons/io'
 import SideHeader from '../SideHeader'
 import './index.css'
 import FeaturedPlayLists from '../FeaturedPlaylists'
@@ -41,11 +41,8 @@ class Home extends Component {
             onClick={this.onClickLogout}
             className="logout-button"
           >
-            <img
-              src="https://res.cloudinary.com/dywnwbcln/image/upload/v1727765132/spotify_clone_images/rfofgvx8wvlrlqw7ctxc.png"
-              alt="logout"
-              className="logout-img"
-            />
+            <IoMdLogOut className="logout-icon" />
+            <p>Logout</p>
           </button>
         </div>
       )}

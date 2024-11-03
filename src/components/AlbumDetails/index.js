@@ -59,23 +59,11 @@ class AlbumDetails extends Component {
     const {albumData} = this.state
     const {name, images, tracks, popularity} = albumData
     const {items} = tracks
-    const songDetailsObj = items[0]
-    const defaultSongDetails = {
-      id: songDetailsObj.id,
-      name: songDetailsObj.name,
-      durationMs: songDetailsObj.duration_ms,
-      images,
-      previewUrl: songDetailsObj.preview_url,
-      artists: songDetailsObj.artists,
-    }
     return (
       <SongContext.Consumer>
         {value => {
-          const {songDetails, updatedSongDetails} = value
+          const {songDetails} = value
           const {artists} = songDetails
-          if (Object.keys(songDetails).length === 0) {
-            updatedSongDetails({...defaultSongDetails})
-          }
           return (
             <>
               <div className="playlist-success-view white-color">

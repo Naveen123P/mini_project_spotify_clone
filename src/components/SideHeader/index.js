@@ -1,4 +1,5 @@
 import {Link, withRouter} from 'react-router-dom'
+import {IoMdLogOut} from 'react-icons/io'
 import Cookies from 'js-cookie'
 import './index.css'
 
@@ -18,12 +19,8 @@ const SideHeader = props => {
         />
       </Link>
       <button type="button" onClick={onClickLogout} className="logout-button">
-        <img
-          src="https://res.cloudinary.com/dywnwbcln/image/upload/v1727765132/spotify_clone_images/rfofgvx8wvlrlqw7ctxc.png"
-          alt="logout"
-          className="logout-img"
-        />
-        Logout
+        <IoMdLogOut className="logout-icon" />
+        <p>Logout</p>
       </button>
     </div>
   )
