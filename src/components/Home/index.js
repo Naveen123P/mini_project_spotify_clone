@@ -79,14 +79,6 @@ class Home extends Component {
             <NewReleases />
           </div>
         </div>
-        {/* <div className="desktop-view">
-          <SideHeader />
-          <div className="home-bg">
-            <FeaturedPlayLists />
-            <Categories />
-            <NewReleases />
-          </div> 
-        </div>  */}
       </>
     )
   }

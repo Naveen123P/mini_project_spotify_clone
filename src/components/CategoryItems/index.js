@@ -1,4 +1,5 @@
 import {Component} from 'react'
+import {Link} from 'react-router-dom'
 import './index.css'
 
 class CategoryItems extends Component {
@@ -6,13 +7,19 @@ class CategoryItems extends Component {
     const {details} = this.props
     return (
       <li className="row-flex desktop-flex">
-        <img src={details.images[0].url} alt="abs" className="playlist-img1" />
-        <div>
-          <h1 className="category-playlist-heading">{details.name}</h1>
-          <p className="category-playlist-para">
-            Total tracks {details.tracks.total}
-          </p>
-        </div>
+        <Link to={`/playlist/${details.id}`} className="link-item">
+          <img
+            src={details.images[0].url}
+            alt="abs"
+            className="playlist-img1"
+          />
+          <div>
+            <h1 className="category-playlist-heading">{details.name}</h1>
+            <p className="category-playlist-para">
+              Total tracks {details.tracks.total}
+            </p>
+          </div>
+        </Link>
       </li>
     )
   }

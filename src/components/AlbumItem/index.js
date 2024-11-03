@@ -17,8 +17,6 @@ class AlbumItem extends Component {
 
   render() {
     const {details, images, popularity} = this.props
-    console.log(9999999999999999999)
-    console.log(details)
     const newDetails = this.getFormattedData(details)
     const {name, artists, previewUrl, durationMs, id, trackNumber} = newDetails
     const extractTitle = input => input.split(/[([\]]/)[0].trim()

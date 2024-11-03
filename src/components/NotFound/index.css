@@ -1,9 +1,3 @@
-/* .not-found-bg {
-  height: ;
-} */
-.not-found-container {
-  height: 100vh;
-}
 .not-found-content {
   display: flex;
   flex-direction: column;
@@ -14,22 +8,13 @@
 .not-found-img {
   width: 80%;
 }
-.mobile-view {
-  background-color: #181818;
+.home-page-button {
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+  border: none;
+  background-color: green;
+  color: #ffffff;
 }
 .not-found-heading {
   color: #ffffff;
-}
-.desktop-view {
-  display: none;
-}
-
-@media screen and (min-width: 768px) {
-  .mobile-view {
-    display: none;
-  }
-  .desktop-view {
-    display: flex;
-    background-color: #181818;
-  }
 }

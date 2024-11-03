@@ -1,5 +1,5 @@
 .failure-bg {
-  height: 500px;
+  height: 100%;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -7,6 +7,7 @@
   justify-content: center;
   background-color: #040306;
   padding: 2rem 1rem;
+  border-radius: 15px;
 }
 .failure-text {
   color: #ffffff;

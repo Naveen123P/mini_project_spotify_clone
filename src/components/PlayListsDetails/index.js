@@ -26,33 +26,6 @@ class PlayListsDetails extends Component {
     this.getPlayListData()
   }
 
-  getFormattedData = data => ({
-    addedAt: data.added_at,
-    track: {
-      album: {
-        albumType: data.track.album.album_type,
-        artists: data.track.album.artists.map(each => ({
-          id: each.id,
-          name: each.name,
-        })),
-        name: data.track.album.name,
-        id: data.track.album.id,
-        releaseDate: data.track.album.release_date,
-        images: data.track.album.images[0].url,
-      },
-      artists: data.track.artists.map(each => ({
-        id: each.name,
-        name: each.name,
-      })),
-      durationMs: data.track.duration_ms,
-      id: data.track.id,
-      name: data.track.name,
-      popularity: data.track.popularity,
-      previewUrl: data.track.preview_url,
-      trackNumber: data.track.track_number,
-    },
-  })
-
   getPlayListData = async () => {
     const {match} = this.props
     const {params} = match
@@ -84,8 +57,6 @@ class PlayListsDetails extends Component {
 
   renderPlayListDetailsView = () => {
     const {playListsData} = this.state
-    console.log(1000000000000000000)
-    console.log(playListsData)
     const {name, images, tracks} = playListsData
     const {items} = tracks
     const songDetailsObj = items[0]
@@ -95,7 +66,7 @@ class PlayListsDetails extends Component {
       durationMs: songDetailsObj.track.duration_ms,
       images,
       previewUrl: songDetailsObj.track.preview_url,
-      artists: songDetailsObj.track.artists, // songDetailsObj.artists[0].name,
+      artists: songDetailsObj.track.artists,
     }
 
     return (
@@ -103,11 +74,9 @@ class PlayListsDetails extends Component {
         {value => {
           const {songDetails, updatedSongDetails} = value
           const {artists} = songDetails
-          console.log(artists)
           if (Object.keys(songDetails).length === 0) {
             updatedSongDetails({...defaultSongDetails})
           }
-
           return (
             <>
               <div className="playlist-success-view white-color">
@@ -115,7 +84,7 @@ class PlayListsDetails extends Component {
                   <img src={images[0].url} alt="preview" className="top-img" />
                   <div className="details-text-container">
                     <h1 className="desktop-playlist-title">
-                      New Release Albums
+                      Featured Playlist
                     </h1>
                     <h1 className="top-name">{name}</h1>
                     {artists ? (
@@ -134,9 +103,10 @@ class PlayListsDetails extends Component {
 
                 <ul className="tracks-items-track">
                   {items.map(each => (
-                    <Item details={each} images={images} />
+                    <Item key={each.track.id} details={each} images={images} />
                   ))}
                 </ul>
+                <div className="dummy-div"> </div>
                 <div className="desktop-playing-song">
                   <SongPlayingRoute />
                 </div>
@@ -186,13 +156,6 @@ class PlayListsDetails extends Component {
             </div>
           </div>
         </div>
-        {/* <div className="desktop-view">
-          <SideHeader />
-          <div className="playlist-details-bg">
-            <BackButton />
-            {this.renderPlayListDetails()}
-          </div>
-        </div> */}
       </>
     )
   }

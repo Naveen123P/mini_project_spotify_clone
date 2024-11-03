@@ -21,6 +21,6 @@
   }
   .desktop-song-item:hover {
     cursor: pointer;
-    background-color: aqua;
+    background-color: #303030;
   }
 }

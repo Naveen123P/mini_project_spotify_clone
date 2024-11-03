@@ -42,13 +42,11 @@ class CategoryPlayListsDetails extends Component {
     const response = await fetch(apiUrl, options)
     if (response.ok) {
       const fetchedData = await response.json()
-      console.log(fetchedData)
       this.setState({
         apiStatus: apiStatusConstants.success,
         CategoryData: fetchedData,
       })
     } else {
-      console.log('fail')
       this.setState({
         apiStatus: apiStatusConstants.failure,
       })
@@ -58,15 +56,13 @@ class CategoryPlayListsDetails extends Component {
   renderCategoryDetailsView = () => {
     const {CategoryData} = this.state
     const {playlists} = CategoryData
-    console.log(playlists)
     const {items} = playlists
-    console.log(1000000000000000)
     return (
       <div className="playlist-success-view white-color ">
         <h1 className="playlist-title">PlayList</h1>
         <ul className="category-desktop-style">
           {items.map(each => (
-            <CategoryItems details={each} />
+            <CategoryItems key={each.id} details={each} />
           ))}
         </ul>
       </div>
@@ -107,21 +103,6 @@ class CategoryPlayListsDetails extends Component {
             </div>
           </div>
         </div>
-        {/* <div className="mobile-view playlist-details-padding">
-          <div className="top-fixed-bar">
-            <BackButton />
-          </div>
-          <div className="playlist-details-bg">
-            {this.renderCategoryDetails()}
-          </div>
-        </div>
-        <div className="desktop-view">
-          <SideHeader />
-          <div className="playlist-details-bg">
-            <BackButton />
-            {this.renderCategoryDetails()}
-          </div>
-        </div> */}
       </>
     )
   }

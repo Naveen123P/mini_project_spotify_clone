@@ -4,10 +4,6 @@ import SongContext from '../../context/SongContext'
 import './index.css'
 
 class Item extends Component {
-  /*  state ={
-    activeSongUrl: "",
-  } */
-
   getFormattedData = data => ({
     addedAt: data.added_at,
     track: {
@@ -39,7 +35,6 @@ class Item extends Component {
     const {details, images} = this.props
     const newDetails = this.getFormattedData(details)
     const {addedAt, track} = newDetails
-    //   console.log(track)
     const {
       trackNumber,
       album,

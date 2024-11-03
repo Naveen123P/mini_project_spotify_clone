@@ -49,7 +49,6 @@ class AlbumDetails extends Component {
         albumData: fetchedData,
       })
     } else {
-      console.log('fail')
       this.setState({
         apiStatus: apiStatusConstants.failure,
       })
@@ -58,8 +57,6 @@ class AlbumDetails extends Component {
 
   renderAlbumDetailsView = () => {
     const {albumData} = this.state
-    console.log(111111111111111111111)
-    console.log(albumData)
     const {name, images, tracks, popularity} = albumData
     const {items} = tracks
     const songDetailsObj = items[0]
@@ -69,14 +66,13 @@ class AlbumDetails extends Component {
       durationMs: songDetailsObj.duration_ms,
       images,
       previewUrl: songDetailsObj.preview_url,
-      artists: songDetailsObj.artists, // songDetailsObj.artists[0].name,
+      artists: songDetailsObj.artists,
     }
     return (
       <SongContext.Consumer>
         {value => {
           const {songDetails, updatedSongDetails} = value
           const {artists} = songDetails
-          console.log(artists)
           if (Object.keys(songDetails).length === 0) {
             updatedSongDetails({...defaultSongDetails})
           }
@@ -104,6 +100,7 @@ class AlbumDetails extends Component {
                 <ul className="tracks-items-track">
                   {items.map(each => (
                     <AlbumItem
+                      key={each.id}
                       details={each}
                       images={images}
                       popularity={popularity}
@@ -154,13 +151,6 @@ class AlbumDetails extends Component {
             </div>
           </div>
         </div>
-        {/* <div className="desktop-view">
-          <SideHeader />
-          <div className="playlist-details-bg">
-            <BackButton />
-            {this.renderAlbumDetails()}
-          </div>
-        </div> */}
       </>
     )
   }

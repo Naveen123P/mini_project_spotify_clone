@@ -6,6 +6,7 @@
   align-items: center;
   justify-content: center;
   background-color: #040306;
+  border-radius: 15px;
 }
 .loading-text {
   color: #ffffff;
