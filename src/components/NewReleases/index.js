@@ -88,7 +88,8 @@ class NewReleases extends Component {
   render() {
     return (
       <div className="playlist-container">
-        <h1 className="playlist-title">New Release Albums</h1>
+        {/* <h1 className="playlist-title">New Release Albums</h1> */}
+        <h1 className="playlist-title">New Releases</h1>
         {this.getAllNewReleasesApiStatus()}
       </div>
     )

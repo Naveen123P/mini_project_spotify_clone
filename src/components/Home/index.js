@@ -1,9 +1,9 @@
 import {Component} from 'react'
 import {Link} from 'react-router-dom'
 import Cookies from 'js-cookie'
-import Popup from 'reactjs-popup'
-import {IoReorderThree} from 'react-icons/io5'
-import {IoIosClose, IoMdLogOut} from 'react-icons/io'
+// import Popup from 'reactjs-popup'
+// import {IoReorderThree} from 'react-icons/io5'
+// import {IoIosClose, IoMdLogOut} from 'react-icons/io'
 import SideHeader from '../SideHeader'
 import './index.css'
 import FeaturedPlayLists from '../FeaturedPlaylists'
@@ -17,7 +17,7 @@ class Home extends Component {
     history.replace('/login')
   }
 
-  renderMenuItems = () => (
+  /*  renderMenuItems = () => (
     <Popup
       modal
       trigger={
@@ -47,7 +47,7 @@ class Home extends Component {
         </div>
       )}
     </Popup>
-  )
+  ) */
 
   renderHomeHeader = () => (
     <div className="mobile-home-header-bg">
@@ -58,7 +58,7 @@ class Home extends Component {
           className="website-logo"
         />
       </Link>
-      {this.renderMenuItems()}
+      {/* {this.renderMenuItems()} */}
     </div>
   )
 
@@ -71,6 +71,7 @@ class Home extends Component {
             <SideHeader />
           </div>
           <div className="home-bg">
+            <h1 className="playlist-title">Editor</h1>
             <FeaturedPlayLists />
             <Categories />
             <NewReleases />

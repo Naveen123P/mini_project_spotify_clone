@@ -88,7 +88,8 @@ class FeaturedPlayLists extends Component {
   render() {
     return (
       <div className="playlist-container">
-        <h1 className="playlist-title">Featured Playlists</h1>
+        {/* <h1 className="playlist-title">Featured Playlists</h1> */}
+        <h1 className="playlist-title">Editors Picks</h1>
         {this.getAllFeaturedPlaylistsApiStatus()}
       </div>
     )

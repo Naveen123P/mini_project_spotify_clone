@@ -75,6 +75,7 @@ class PlayListsDetails extends Component {
                       Featured Playlist
                     </h1>
                     <h1 className="top-name">{name}</h1>
+                    {/* <p>{}</p> */}
                     {artists ? (
                       <p className="artist-name">{artists[0].name}</p>
                     ) : null}

@@ -76,6 +76,7 @@ class Item extends Component {
                   {durationMs % 60}
                 </p>
               </li>
+
               <li
                 onClick={onClickSongItem}
                 className="desktop-track-table desktop-song-item"

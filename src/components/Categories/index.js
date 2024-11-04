@@ -88,7 +88,8 @@ class Categories extends Component {
   render() {
     return (
       <div className="playlist-container">
-        <h1 className="playlist-title">Categories</h1>
+        {/* <h1 className="playlist-title">Categories</h1> */}
+        <h1 className="playlist-title">Genres & Moods</h1>
         {this.getAllCategoriesApiStatus()}
       </div>
     )

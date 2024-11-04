@@ -84,6 +84,7 @@ class AlbumDetails extends Component {
                   <p className="album-track-name">Track</p>
                   <p className="album-time">Time</p>
                   <p className="album-popularity">Popularity</p>
+                  <p className="artist">Artist</p>
                 </div>
                 <ul className="tracks-items-track">
                   {items.map(each => (

@@ -16,7 +16,7 @@ class CategoryItems extends Component {
           <div>
             <h1 className="category-playlist-heading">{details.name}</h1>
             <p className="category-playlist-para">
-              Total tracks {details.tracks.total}
+              {details.tracks.total} Tracks
             </p>
           </div>
         </Link>

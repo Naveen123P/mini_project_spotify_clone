@@ -8,13 +8,14 @@ const BackButton = () => {
   }
   return (
     <div className="back-button-bg">
-      <button onClick={goBack} type="button" className="back-button">
+      <button onClick={goBack} type="button" className="back-button back-text">
         <img
           src="https://res.cloudinary.com/dywnwbcln/image/upload/v1727765132/spotify_clone_images/dzgsovgiz3omwcgxtzsb.png"
           alt="back arrow"
           className="back-arrow"
         />
-        <p className="back-text">Back</p>
+        Back
+        {/* <p className="back-text">Back</p> */}
       </button>
     </div>
   )

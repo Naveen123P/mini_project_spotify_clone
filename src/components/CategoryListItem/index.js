@@ -9,7 +9,7 @@ const CategoryListsItems = props => {
   return (
     <li className="playlist-item">
       <Link to={`/category/${id}/playlists`} className="link-item">
-        <img src={image} alt={name} className="playlist-img" />
+        <img src={image} alt="category" className="playlist-img" />
         <p className="playlist-text">{name}</p>
       </Link>
     </li>

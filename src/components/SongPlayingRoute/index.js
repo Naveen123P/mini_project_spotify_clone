@@ -4,7 +4,20 @@ import SongContext from '../../context/SongContext'
 import './index.css'
 
 class SongPlayingRoute extends Component {
+  constructor(props) {
+    super(props)
+
+    const {dummyDetails} = this.context
+
+    this.state = {
+      dummyDetails,
+    }
+  }
+
   render() {
+    const {dummyDetails} = this.state
+
+    console.log(dummyDetails)
     const extractTitle = input => input.split(/[([\]]/)[0].trim()
 
     return (
@@ -12,6 +25,16 @@ class SongPlayingRoute extends Component {
         {value => {
           const {songDetails} = value
           const {name, artists, previewUrl, images} = songDetails
+          const playingSong = () => (
+            <audio autoPlay loop>
+              <source src={previewUrl} type="audio/mpeg" />
+              <track
+                kind="captions"
+                srcLang="en"
+                label="No captions available"
+              />
+            </audio>
+          )
 
           return (
             <>
@@ -30,13 +53,10 @@ class SongPlayingRoute extends Component {
                       </p>
                     </div>
                   </div>
-                  <audio controls src={previewUrl}>
-                    <track
-                      kind="captions"
-                      srcLang="en"
-                      label="No captions available"
-                    />
-                  </audio>
+                  <>{playingSong()}</>
+                  <button type="button" className="white-color song-item-name">
+                    play
+                  </button>
                 </div>
               )}
             </>

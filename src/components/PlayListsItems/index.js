@@ -10,7 +10,7 @@ const PlayListsItems = props => {
   return (
     <li className="playlist-item">
       <Link to={`/playlist/${id}`} className="link-item">
-        <img src={image} alt={name} className="playlist-img" />
+        <img src={image} alt="featured playlist" className="playlist-img" />
         <p className="playlist-text">{extractTitle(name)}</p>
       </Link>
     </li>

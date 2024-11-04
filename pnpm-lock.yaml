@@ -25,7 +25,6 @@ specifiers:
   react-icons: 4.3.1
   react-router-dom: 5.2.0
   react-scripts: 4.0.3
-  reactjs-popup: 2.0.6
   start: 5.1.0
 
 dependencies:
@@ -44,7 +43,6 @@ dependencies:
   react-dom: 17.0.1_react@17.0.1
   react-icons: 4.3.1_react@17.0.1
   react-router-dom: 5.2.0_react@17.0.1
-  reactjs-popup: 2.0.6_react-dom@17.0.1+react@17.0.1
   start: 5.1.0
 
 devDependencies:
@@ -12196,17 +12194,6 @@ packages:
     dependencies:
       loose-envify: 1.4.0
       object-assign: 4.1.1
-    dev: false
-
-  /reactjs-popup/2.0.6_react-dom@17.0.1+react@17.0.1:
-    resolution: {integrity: sha512-A+tt+x9wdgZiZjv0e2WzYLD3IfFwJALaRaqwrCSXGjo0iQdsry/EtBEbQXRSmQs7cHmOi5eytCiSlOm8k4C+dg==}
-    engines: {node: '>=10'}
-    peerDependencies:
-      react: '>=16'
-      react-dom: '>=16'
-    dependencies:
-      react: 17.0.1
-      react-dom: 17.0.1_react@17.0.1
     dev: false
 
   /read-pkg-up/7.0.1:
