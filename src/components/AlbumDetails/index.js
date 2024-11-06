@@ -70,9 +70,7 @@ class AlbumDetails extends Component {
                 <div className="top-image-name">
                   <img src={images[0].url} alt="preview" className="top-img" />
                   <div className="details-text-container">
-                    <h1 className="desktop-playlist-title">
-                      Featured Playlist
-                    </h1>
+                    <h1 className="desktop-playlist-title">New Releases</h1>
                     <h1 className="top-name">{name}</h1>
                     {artists ? (
                       <p className="artist-name">{artists[0].name}</p>

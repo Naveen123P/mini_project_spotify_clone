@@ -14,8 +14,8 @@ const BackButton = () => {
           alt="back arrow"
           className="back-arrow"
         />
-        Back
-        {/* <p className="back-text">Back</p> */}
+        {/* Back */}
+        <p className="back-text">Back</p>
       </button>
     </div>
   )
