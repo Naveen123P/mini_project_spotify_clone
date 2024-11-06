@@ -64,7 +64,10 @@ class Item extends Component {
           }
           return (
             <>
-              <li onClick={onClickSongItem} className="song-item">
+              <li
+                onClick={onClickSongItem}
+                className="song-item desktop-song-item"
+              >
                 <div className="song-artist">
                   <h3 className="song-item-name">{extractTitle(name)}</h3>
                   <p className="song-item-artist">

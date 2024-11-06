@@ -6,8 +6,11 @@ class CategoryItems extends Component {
   render() {
     const {details} = this.props
     return (
-      <li className="row-flex-category-item desktop-flex">
-        <Link to={`/playlist/${details.id}`} className="link-item">
+      <li className="desktop-flex">
+        <Link
+          to={`/playlist/${details.id}`}
+          className=" row-flex-category-item desktop-flex link-item"
+        >
           <img
             src={details.images[0].url}
             alt="abs"
