@@ -21,7 +21,6 @@ class PlayListsDetails extends Component {
     apiStatus: apiStatusConstants.initial,
     playListsData: {},
     // playlistTrack: [],
-    artistName: '',
   }
 
   componentDidMount() {
@@ -58,14 +57,10 @@ class PlayListsDetails extends Component {
     const {playListsData} = this.state
     const {tracks} = playListsData
     const {items} = tracks
-    const {track} = items[0]
-    const {artists} = track
-    console.log(artists[0].name)
-    this.setState({artistName: artists[0].name})
   }
 
   renderPlayListDetailsView = () => {
-    const {playListsData, artistName} = this.state
+    const {playListsData} = this.state
     const {name, images, tracks, description} = playListsData
     const {items} = tracks
 
@@ -82,13 +77,12 @@ class PlayListsDetails extends Component {
                   <div className="details-text-container">
                     <h1 className="desktop-playlist-title">Editors Picks</h1>
                     <h1 className="top-name">{name}</h1>
-                    <h6 className="artist-name">{description}</h6>
-                    {/* <p>{}</p> */}
-                    {artists ? (
+                    <p className="artist-name">{description}</p>
+                    {/* {artists ? (
                       <p className="artist-name">{artists[0].name}</p>
                     ) : (
                       <p className="artist-name">{artistName}</p>
-                    )}
+                    )} */}
                   </div>
                 </div>
                 <div className="desktop-track-table border-bottom">

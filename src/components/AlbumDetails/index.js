@@ -20,7 +20,6 @@ class AlbumDetails extends Component {
   state = {
     apiStatus: apiStatusConstants.initial,
     albumData: {},
-    artistName: '',
   }
 
   componentDidMount() {
@@ -57,13 +56,10 @@ class AlbumDetails extends Component {
     const {albumData} = this.state
     const {tracks} = albumData
     const {items} = tracks
-    const {artists} = items[0]
-    console.log(artists[0].name)
-    this.setState({artistName: artists[0].name})
   }
 
   renderAlbumDetailsView = () => {
-    const {albumData, artistName} = this.state
+    const {albumData} = this.state
     const {name, images, tracks, popularity} = albumData
     const {items} = tracks
     return (
@@ -79,11 +75,11 @@ class AlbumDetails extends Component {
                   <div className="details-text-container">
                     <h1 className="desktop-playlist-title">New Releases</h1>
                     <h1 className="top-name">{name}</h1>
-                    {artists ? (
+                    {/* {artists ? (
                       <p className="artist-name">{artists[0].name}</p>
                     ) : (
                       <p className="artist-name">{artistName}</p>
-                    )}
+                    )} */}
                   </div>
                 </div>
                 <div className="desktop-track-table border-bottom">

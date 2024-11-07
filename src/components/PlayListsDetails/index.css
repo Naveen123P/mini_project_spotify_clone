@@ -112,6 +112,7 @@
   }
   .top-name {
     font-size: 3rem;
+    text-align: left;
   }
   .artist-name {
     text-align: left;
